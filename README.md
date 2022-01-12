@@ -124,3 +124,19 @@ public class ElectricSpot extends ParkingSpot {
   }
 }
 ```
+
+# ParkingFloor
+```java
+public class ParkingFloor {
+  private String name;
+  private HashMap<String, HandicappedSpot> handicappedSpots;
+  private HashMap<String, CompactSpot> compactSpots;
+  private HashMap<String, LargeSpot> largeSpots;
+  private HashMap<String, MotorbikeSpot> motorbikeSpots;
+  private HashMap<String, ElectricSpot> electricSpots;
+
+  public ParkingFloor(String name) {
+    this.name = name;
+  }
+}  
+```
