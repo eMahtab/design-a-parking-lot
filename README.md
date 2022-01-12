@@ -16,3 +16,12 @@
 
 7. The system should support parking for different types of vehicles like car, truck, van, motorcycle, etc.
 
+
+
+# VehicleType
+```java
+public enum VehicleType {
+  CAR, TRUCK, ELECTRIC, VAN, MOTORBIKE
+}
+```
+
