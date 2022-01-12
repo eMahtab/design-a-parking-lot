@@ -140,3 +140,27 @@ public class ParkingFloor {
   }
 }  
 ```
+
+# ParkingLot
+```java
+public class ParkingLot {
+    private String name;
+    private HashMap<String, ParkingFloor> parkingFloors;
+  
+    // private constructor to restrict for singleton
+    private ParkingLot() {
+    
+    }
+
+    // singleton ParkingLot to ensure only one object of ParkingLot in the system
+    private static class ParkingLotHolder {
+        private static final ParkingLot INSTANCE = new ParkingLot();
+    }
+  
+    // static method to get the singleton instance of ParkingLot
+    public static ParkingLot getInstance() {
+        return ParkingLotHolder.INSTANCE;
+    }
+  }
+  
+```
