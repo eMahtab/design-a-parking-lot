@@ -18,10 +18,14 @@
 
 
 
-# VehicleType
+# VehicleType and ParkingSpotType
 ```java
 public enum VehicleType {
   CAR, TRUCK, ELECTRIC, VAN, MOTORBIKE
+}
+
+public enum ParkingSpotType {
+  HANDICAPPED, COMPACT, LARGE, MOTORBIKE, ELECTRIC
 }
 ```
 
