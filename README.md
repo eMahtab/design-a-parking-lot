@@ -75,18 +75,20 @@ public abstract class ParkingSpot {
   private final ParkingSpotType type;
   private Vehicle vehicle;
 
-  public boolean IsFree();
+  public boolean isFree() {
+      return free;
+  }
 
   public ParkingSpot(ParkingSpotType type) {
     this.type = type;
   }
 
-  public boolean assignVehicle(Vehicle vehicle) {
+  public boolean assignSpot(Vehicle vehicle) {
     this.vehicle = vehicle;
     free = false;
   }
 
-  public boolean removeVehicle() {
+  public boolean freeSpot() {
     this.vehicle = null;
     free = true;
   }
