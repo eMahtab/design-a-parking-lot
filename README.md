@@ -41,17 +41,17 @@ public enum VehicleType {
    private final ParkingSpotType requiredParkingSpot;
 
    VehicleType(double hourlyRate, ParkingSpotType requiredParkingSpot) {
-	  this.hourlyRate = hourlyRate;
-	  this.requiredParkingSpot = requiredParkingSpot;
+       this.hourlyRate = hourlyRate;
+       this.requiredParkingSpot = requiredParkingSpot;
    }
 
-	public double getHourlyRate() {
-		return hourlyRate;
-	}
+   public double getHourlyRate() {
+       return hourlyRate;
+   }
 	
-	public ParkingSpotType getRequiredParkingSpot() {
-		return requiredParkingSpot;
-	} 
+   public ParkingSpotType getRequiredParkingSpot() {
+       return requiredParkingSpot;
+   } 
 }
 ```
 
