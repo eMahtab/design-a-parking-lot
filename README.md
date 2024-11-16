@@ -29,6 +29,31 @@ public enum ParkingSpotType {
 ```
 
 # VehicleType with hourly rate and required parking spot
+```java
+public enum VehicleType {
+   MOTORBIKE(15.0, ParkingSpotType.MOTORBIKE), 
+   CAR(25.0, ParkingSpotType.MEDIUM), 
+   VAN(30.0, ParkingSpotType.LARGE), 
+   TRUCK(40.0, ParkingSpotType.OVERSIZE), 
+   ELECTRIC(25.0, ParkingSpotType.ELECTRIC);
+	
+   private final double hourlyRate;
+   private final ParkingSpotType requiredParkingSpot;
+
+   VehicleType(double hourlyRate, ParkingSpotType requiredParkingSpot) {
+	  this.hourlyRate = hourlyRate;
+	  this.requiredParkingSpot = requiredParkingSpot;
+   }
+
+	public double getHourlyRate() {
+		return hourlyRate;
+	}
+	
+	public ParkingSpotType getRequiredParkingSpot() {
+		return requiredParkingSpot;
+	} 
+}
+```
 
 # Vehicle class and its subtypes
 ```java
