@@ -24,7 +24,7 @@ public enum VehicleType {
 }
 
 public enum ParkingSpotType {
-  HANDICAPPED, COMPACT, LARGE, MOTORBIKE, ELECTRIC
+  MOTORBIKE, HANDICAP, MEDIUM, LARGE, OVERSIZE, ELECTRIC
 }
 ```
 
