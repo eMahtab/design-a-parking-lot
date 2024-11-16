@@ -28,6 +28,8 @@ public enum ParkingSpotType {
 }
 ```
 
+# VehicleType with hourly rate and required parking spot
+
 # Vehicle class and its subtypes
 ```java
 public abstract class Vehicle {
