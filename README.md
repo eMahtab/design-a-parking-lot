@@ -55,42 +55,23 @@ public enum VehicleType {
 }
 ```
 
-# Vehicle class and its subtypes
+# Vehicle class
 ```java
-public abstract class Vehicle {
-  private String licenseNumber;
-  private final VehicleType type;
-  private ParkingTicket ticket;
-
-  public Vehicle(VehicleType type) {
-    this.type = type;
-  }
-
-  public void assignTicket(ParkingTicket ticket) {
-    this.ticket = ticket;
-  }
+public class Vehicle {
+    private String licenseNumber;
+    private VehicleType vehicleType;
+	
+    public Vehicle(String licenseNumber, VehicleType vehicleType) {
+        this.licenseNumber = licenseNumber;
+        this.vehicleType = vehicleType;
+    }
+    public String getLicenseNumber() {
+        return licenseNumber;
+    }
+    public VehicleType getVehicleType() {
+        return vehicleType;
+    }
 }
-
-public class Car extends Vehicle {
-  public Car() {
-    super(VehicleType.CAR);
-  }
-}
-
-public class Van extends Vehicle {
-  public Van() {
-    super(VehicleType.VAN);
-  }
-}
-
-public class Truck extends Vehicle {
-  public Truck() {
-    super(VehicleType.TRUCK);
-  }
-}
-
-// Similarly we can define classes for Motorcycle and Electric vehicles etc.
-
 ```
 
 # ParkingSpot
