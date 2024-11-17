@@ -76,59 +76,47 @@ public class Vehicle {
 
 # ParkingSpot
 ```java
-public abstract class ParkingSpot {
-  private String number;
-  private boolean free;
-  private final ParkingSpotType type;
-  private Vehicle vehicle;
+class ParkingSpot {
+	private String parkingSpotId;
+	private final ParkingSpotType parkingSpotType;
+    private boolean isFree;
+    private Vehicle vehicle;
 
-  public boolean isFree() {
-      return free;
-  }
-
-  public ParkingSpot(ParkingSpotType type) {
-    this.type = type;
-  }
-
-  public boolean assignSpot(Vehicle vehicle) {
-    this.vehicle = vehicle;
-    free = false;
-  }
-
-  public boolean freeSpot() {
-    this.vehicle = null;
-    free = true;
-  }
-}
-
-public class HandicappedSpot extends ParkingSpot {
-  public HandicappedSpot() {
-    super(ParkingSpotType.HANDICAPPED);
-  }
-}
-
-public class CompactSpot extends ParkingSpot {
-  public CompactSpot() {
-    super(ParkingSpotType.COMPACT);
-  }
-}
-
-public class LargeSpot extends ParkingSpot {
-  public LargeSpot() {
-    super(ParkingSpotType.LARGE);
-  }
-}
-
-public class MotorbikeSpot extends ParkingSpot {
-  public MotorbikeSpot() {
-    super(ParkingSpotType.MOTORBIKE);
-  }
-}
-
-public class ElectricSpot extends ParkingSpot {
-  public ElectricSpot() {
-    super(ParkingSpotType.ELECTRIC);
-  }
+    public ParkingSpot(ParkingSpotType spotType) {
+        this.parkingSpotType = spotType;
+        this.isFree = true;
+        this.vehicle = null;
+    }
+    public ParkingSpot(String parkingSpotId, ParkingSpotType spotType) {
+    	this.parkingSpotId = parkingSpotId;
+        this.parkingSpotType = spotType;
+        this.isFree = true;
+        this.vehicle = null;
+    }
+    public boolean park(Vehicle vehicle) {
+        if (!isFree || vehicle.getVehicleType().getRequiredParkingSpot() != parkingSpotType) {
+            return false; // Can't park if occupied or vehicle type doesn't match the spot type
+        }
+        this.isFree = false;
+        this.vehicle = vehicle;
+        return true;
+    }
+    public void freeParkingSpot() {
+        isFree = true;
+        vehicle = null;
+    }
+    public String getParkingSpotId() {
+		return parkingSpotId;
+	}
+    public boolean isFree() {
+        return isFree;
+    }
+    public ParkingSpotType getParkingSpotType() {
+        return parkingSpotType;
+    }
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
 }
 ```
 
