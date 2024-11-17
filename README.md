@@ -287,22 +287,22 @@ public class Main {
 
         // Add some parking spots
         lot.addParkingSpot(1, new ParkingSpot(ParkingSpotType.MOTORBIKE));
-        lot.addParkingSpot(1, new ParkingSpot(ParkingSpotType.MEDIUM));
-        lot.addParkingSpot(2, new ParkingSpot(ParkingSpotType.LARGE));
-        lot.addParkingSpot(3, new ParkingSpot(ParkingSpotType.OVERSIZE));
+        lot.addParkingSpot(1, new ParkingSpot(ParkingSpotType.MOTORBIKE));
+        lot.addParkingSpot(2, new ParkingSpot(ParkingSpotType.MEDIUM));
+        lot.addParkingSpot(3, new ParkingSpot(ParkingSpotType.MEDIUM));
 
         Vehicle car = new Vehicle(VehicleType.CAR);
-        Vehicle truck = new Vehicle(VehicleType.TRUCK);
+        Vehicle motorBike = new Vehicle(VehicleType.MOTORBIKE);
 
         // Try to park a car
         boolean parkedCar = lot.parkVehicle(car);
         System.out.println("Car parked: " + parkedCar);
 
-        // Try to park a truck
-        boolean parkedTruck = lot.parkVehicle(truck);
-        System.out.println("Truck parked: " + parkedTruck);
+        // Try to park a MotorBike
+        boolean parkedMotorBike = lot.parkVehicle(motorBike);
+        System.out.println("MotorBike parked: " + parkedMotorBike);
 
-        // Get available spots for a MOTORBIKE
+        // Get available spots for a MotorBike
         List<ParkingSpot> availableMotorbikeSpots = lot.getFreeParkingSpots(ParkingSpotType.MOTORBIKE);
         System.out.println("Available MOTORBIKE spots: " + availableMotorbikeSpots.size());
 
@@ -310,11 +310,22 @@ public class Main {
         ParkingLevel level2 = lot.getParkingLevels().get(2);
         System.out.println("Level 2 available spots for LARGE vehicles: " + level2.getFreeParkingSpots(ParkingSpotType.LARGE).size());
 
-        // Remove the truck
-        boolean removedTruck = lot.removeVehicle(truck);
-        System.out.println("Truck removed: " + removedTruck);
+        // Remove the MotorBike
+        boolean removedMotorBike = lot.removeVehicle(motorBike);
+        System.out.println("MotorBike removed: " + removedMotorBike);
+        System.out.println("Available MOTORBIKE spots: " + lot.getFreeParkingSpots(ParkingSpotType.MOTORBIKE).size());
     }
 }
+```
+
+## Code Execution Output:
+```
+Car parked: true
+MotorBike parked: true
+Available MOTORBIKE spots: 1
+Level 2 available spots for LARGE vehicles: 0
+MotorBike removed: true
+Available MOTORBIKE spots: 2
 ```
 
 # References :
