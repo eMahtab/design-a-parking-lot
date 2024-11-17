@@ -211,26 +211,64 @@ class ParkingLevel {
 
 # ParkingLot
 ```java
-public class ParkingLot {
-    private String name;
-    private HashMap<String, ParkingFloor> parkingFloors;
-  
-    // private constructor to restrict for singleton
-    private ParkingLot() {
-    
-    }
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-    // singleton ParkingLot to ensure only one object of ParkingLot in the system
-    private static class ParkingLotHolder {
-        private static final ParkingLot INSTANCE = new ParkingLot();
+public class ParkingLot {
+    private String id;
+    private String name;
+    private Map<Integer, ParkingLevel> parkingLevels;
+	
+    public ParkingLot(int numLevels) {
+        parkingLevels = new HashMap<>();
+        for (int i = 1; i <= numLevels; i++) {
+            parkingLevels.put(i, new ParkingLevel(i));
+        }
     }
-  
-    // static method to get the singleton instance of ParkingLot
-    public static ParkingLot getInstance() {
-        return ParkingLotHolder.INSTANCE;
+    public String getId() {
+		return id;
     }
-  }
-  
+    public String getName() {
+		return name;
+    }
+    public Map<Integer, ParkingLevel> getParkingLevels() {
+		return parkingLevels;
+    }
+	
+    public boolean parkVehicle(Vehicle vehicle) {
+        for (ParkingLevel level : parkingLevels.values()) {
+            if (level.parkVehicle(vehicle)) {
+                return true; // Vehicle parked successfully
+            }
+        }
+        return false; // No available spots
+    }
+    public boolean removeVehicle(Vehicle vehicle) {
+        for (ParkingLevel level : parkingLevels.values()) {
+            if (level.removeVehicle(vehicle)) {
+                return true; // Vehicle removed successfully
+            }
+        }
+        return false; // Vehicle not found
+    }
+    public List<ParkingSpot> getFreeParkingSpots(ParkingSpotType type) {
+        List<ParkingSpot> freeParkingSpots = new ArrayList<>();
+        for (ParkingLevel level : parkingLevels.values()) {
+        	freeParkingSpots.addAll(level.getFreeParkingSpots(type));
+        }
+        return freeParkingSpots;
+    }
+    public void addParkingSpot(int levelNumber, ParkingSpot spot) {
+        ParkingLevel level = parkingLevels.get(levelNumber);
+        if (level != null) {
+            level.addParkingSpot(spot);
+        } else {
+            System.out.println("Invalid level number: " + levelNumber);
+        }
+    }
+}
 ```
 
 # References :
