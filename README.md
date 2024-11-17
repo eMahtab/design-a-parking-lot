@@ -271,5 +271,51 @@ public class ParkingLot {
 }
 ```
 
+## Testing the Code
+```java
+import java.util.List;
+import net.mahtabalam.entity.ParkingLevel;
+import net.mahtabalam.entity.ParkingLot;
+import net.mahtabalam.entity.ParkingSpot;
+import net.mahtabalam.entity.ParkingSpotType;
+import net.mahtabalam.entity.Vehicle;
+import net.mahtabalam.entity.VehicleType;
+
+public class Main {
+    public static void main(String[] args) {
+        ParkingLot lot = new ParkingLot(3); // 3 levels in the parking lot
+
+        // Add some parking spots
+        lot.addParkingSpot(1, new ParkingSpot(ParkingSpotType.MOTORBIKE));
+        lot.addParkingSpot(1, new ParkingSpot(ParkingSpotType.MEDIUM));
+        lot.addParkingSpot(2, new ParkingSpot(ParkingSpotType.LARGE));
+        lot.addParkingSpot(3, new ParkingSpot(ParkingSpotType.OVERSIZE));
+
+        Vehicle car = new Vehicle(VehicleType.CAR);
+        Vehicle truck = new Vehicle(VehicleType.TRUCK);
+
+        // Try to park a car
+        boolean parkedCar = lot.parkVehicle(car);
+        System.out.println("Car parked: " + parkedCar);
+
+        // Try to park a truck
+        boolean parkedTruck = lot.parkVehicle(truck);
+        System.out.println("Truck parked: " + parkedTruck);
+
+        // Get available spots for a MOTORBIKE
+        List<ParkingSpot> availableMotorbikeSpots = lot.getFreeParkingSpots(ParkingSpotType.MOTORBIKE);
+        System.out.println("Available MOTORBIKE spots: " + availableMotorbikeSpots.size());
+
+        // Access a specific level
+        ParkingLevel level2 = lot.getParkingLevels().get(2);
+        System.out.println("Level 2 available spots for LARGE vehicles: " + level2.getFreeParkingSpots(ParkingSpotType.LARGE).size());
+
+        // Remove the truck
+        boolean removedTruck = lot.removeVehicle(truck);
+        System.out.println("Truck removed: " + removedTruck);
+    }
+}
+```
+
 # References :
 https://www.educative.io/courses/grokking-the-object-oriented-design-interview/gxM3gRxmr8Z
