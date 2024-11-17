@@ -77,8 +77,8 @@ public class Vehicle {
 # ParkingSpot
 ```java
 class ParkingSpot {
-	private String parkingSpotId;
-	private final ParkingSpotType parkingSpotType;
+    private String parkingSpotId;
+    private final ParkingSpotType parkingSpotType;
     private boolean isFree;
     private Vehicle vehicle;
 
