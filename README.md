@@ -268,6 +268,18 @@ public class ParkingLot {
             System.out.println("Invalid level number: " + levelNumber);
         }
     }
+    public void displayStatus() {
+        System.out.println("=== Parking Lot Status ===");
+        for (ParkingSpotType type : ParkingSpotType.values()) {
+            int totalAvailable = 0;
+            for (ParkingLevel level : parkingLevels.values()) {
+                int availableSpots = level.getFreeParkingSpots(type).size();
+                totalAvailable += availableSpots;
+            }
+            System.out.printf("Available %s spots: %d%n", type, totalAvailable);
+        }
+        System.out.println("==========================");
+    }	
 }
 ```
 
@@ -314,6 +326,7 @@ public class Main {
         boolean removedMotorBike = lot.removeVehicle(motorBike);
         System.out.println("MotorBike removed: " + removedMotorBike);
         System.out.println("Available MOTORBIKE spots: " + lot.getFreeParkingSpots(ParkingSpotType.MOTORBIKE).size());
+	lot.displayStatus();
     }
 }
 ```
@@ -326,6 +339,15 @@ Available MOTORBIKE spots: 1
 Level 2 available spots for LARGE vehicles: 0
 MotorBike removed: true
 Available MOTORBIKE spots: 2
+=== Parking Lot Status ===
+Available MOTORBIKE spots: 2
+Available HANDICAP spots: 0
+Available SMALL spots: 0
+Available MEDIUM spots: 1
+Available LARGE spots: 0
+Available ELECTRIC spots: 0
+Available OVERSIZE spots: 0
+==========================
 ```
 
 # References :
