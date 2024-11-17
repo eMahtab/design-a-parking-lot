@@ -144,20 +144,66 @@ class ParkingTicket {
 }
 ```
 
-# ParkingFloor
+# ParkingLevel
 ```java
-public class ParkingFloor {
-  private String name;
-  private HashMap<String, HandicappedSpot> handicappedSpots;
-  private HashMap<String, CompactSpot> compactSpots;
-  private HashMap<String, LargeSpot> largeSpots;
-  private HashMap<String, MotorbikeSpot> motorbikeSpots;
-  private HashMap<String, ElectricSpot> electricSpots;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
 
-  public ParkingFloor(String name) {
-    this.name = name;
-  }
-}  
+class ParkingLevel {
+	private String name;
+	private int levelNumber;
+    private Map<ParkingSpotType, List<ParkingSpot>> parkingSpots;
+
+    public ParkingLevel(String name, int levelNumber) {
+    	this.name = name;
+        this.levelNumber = levelNumber;
+        parkingSpots = new EnumMap<>(ParkingSpotType.class);
+        // Initialize parking spots for each type
+        for (ParkingSpotType type : ParkingSpotType.values()) {
+            parkingSpots.put(type, new ArrayList<>());
+        }
+    }
+    public String getName() {
+		return name;
+	}
+    public int getLevelNumber() {
+        return levelNumber;
+    }
+    public void addParkingSpot(ParkingSpot parkingSpot) {
+        parkingSpots.get(parkingSpot.getParkingSpotType()).add(parkingSpot);
+    }
+    public boolean parkVehicle(Vehicle vehicle) {
+        List<ParkingSpot> spots = parkingSpots.get(vehicle.getVehicleType().getRequiredParkingSpot());
+        for (ParkingSpot spot : spots) {
+            if (spot.isFree()) {
+                return spot.park(vehicle);
+            }
+        }
+        return false; // No available spots for this vehicle
+    }
+    public boolean removeVehicle(Vehicle vehicle) {
+        for (List<ParkingSpot> spots : parkingSpots.values()) {
+            for (ParkingSpot spot : spots) {
+                if (!spot.isFree() && spot.getVehicle().equals(vehicle)) {
+                    spot.freeParkingSpot();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public List<ParkingSpot> getFreeParkingSpots(ParkingSpotType type) {
+        List<ParkingSpot> availableSpots = new ArrayList<>();
+        for (ParkingSpot parkingSpot : parkingSpots.get(type)) {
+            if (parkingSpot.isFree()) {
+                availableSpots.add(parkingSpot);
+            }
+        }
+        return availableSpots;
+    }
+}
 ```
 
 # ParkingLot
