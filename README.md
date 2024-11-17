@@ -152,12 +152,15 @@ import java.util.List;
 import java.util.Map;
 
 class ParkingLevel {
-	private String name;
-	private int levelNumber;
+    private String name;
+    private int levelNumber;
     private Map<ParkingSpotType, List<ParkingSpot>> parkingSpots;
 
     public ParkingLevel(String name, int levelNumber) {
+    	this(levelNumber);    	
     	this.name = name;
+    }
+    public ParkingLevel(int levelNumber) {
         this.levelNumber = levelNumber;
         parkingSpots = new EnumMap<>(ParkingSpotType.class);
         // Initialize parking spots for each type
@@ -166,8 +169,8 @@ class ParkingLevel {
         }
     }
     public String getName() {
-		return name;
-	}
+        return name;
+    }
     public int getLevelNumber() {
         return levelNumber;
     }
